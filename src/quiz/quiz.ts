@@ -6,7 +6,7 @@ export interface QuestionAndAnswer {
 }
 
 export const emptyQuestion: QuestionAndAnswer = { id: undefined, answers: [], question: "", selected: -1 };
-export const AmountOfQuestions = 8;
+export const AmountOfQuestions = 10;
 
 export function shuffleArray(array: QuestionAndAnswer[], amount: number) {
   const deepCopy = JSON.parse(JSON.stringify(array));
@@ -42,6 +42,14 @@ export const Answers = [
   { id: 19, value: 1 },
   { id: 20, value: 1 },
   { id: 21, value: 1 },
+  { id: 22, value: 2 },
+  { id: 23, value: 0 },
+  { id: 24, value: 2 },
+  { id: 25, value: 0 },
+  { id: 26, value: 2 },
+  { id: 27, value: 0 },
+  { id: 28, value: 0 },
+  { id: 29, value: 1 },
 ];
 
 export const Catalog: QuestionAndAnswer[] = [
@@ -143,7 +151,7 @@ export const Catalog: QuestionAndAnswer[] = [
   },
   {
     id: 16,
-    question: 'Was heißt "Frohe Weihnachten" auf Spanisch?',
+    question: "Was heißt „Frohe Weihnachten“ auf Spanisch?",
     answers: ["Muchas Gracias", "Feliz Navidad", "Bienvenidos"],
     selected: -1,
   },
@@ -162,7 +170,7 @@ export const Catalog: QuestionAndAnswer[] = [
   {
     id: 19,
     question: "In der Weihnachtsbäckerei gibts…",
-    answers: ["ein vergessenes Osterei", "so manche Leckerei", "ein riesen Fest"],
+    answers: ["Ein vergessenes Osterei", "So manche Leckerei", "Ein riesen Fest"],
     selected: -1,
   },
   {
@@ -175,6 +183,58 @@ export const Catalog: QuestionAndAnswer[] = [
     id: 21,
     question: "Was ist das Besondere am finnischen Weihnachtsmann Joulupukki?",
     answers: ["Er hat keinen Bart", "Er ist verheiratet", "Er hat keinen roten Mantel"],
+    selected: -1,
+  },
+  {
+    id: 22,
+    question: "Woher stammt die Pflanze Weihnachtsstern?",
+    answers: ["Von den Mohawk aus Nordamerika", "Von den Aborigines aus Australien", "Von den Azteken aus Mexiko"],
+    selected: -1,
+  },
+  {
+    id: 23,
+    question: "In Finnland laufen die Kinder vor Weihnachten von Haus zu Haus. Dabei verkleiden sie sich als...",
+    answers: ["Elf/e", "Rentier", "Weihnachtsmann"],
+    selected: -1,
+  },
+  {
+    id: 24,
+    question: "Woher kam die Idee zum Lied „Rudolph The Red Nose Reindeer“?",
+    answers: ["Vom achten amerikanischen Präsidenten Martin van Buren", "Vom Komponisten Johnny Marks", "Aus einem Kindermalbuch"],
+    selected: -1,
+  },
+  {
+    id: 25,
+    question: "Woher kommt das weihnachtliche Christkind?",
+    answers: [
+      "Martin Luther führte es im 16. Jahrhundert ein",
+      "Es stammt aus den Weihnachtsbräuchen in Skandinavien",
+      "Es ist einen Erfindung von Walt Disney",
+    ],
+    selected: -1,
+  },
+  {
+    id: 26,
+    question: "Woraus wird Marzipan gemacht?",
+    answers: ["Walnüsse", "Datteln", "Mandeln"],
+    selected: -1,
+  },
+  {
+    id: 27,
+    question: "Wie viele Weihnachtslieder gibt es ungefähr laut dem Büro für Weihnachtslieder in Graz?",
+    answers: ["30.000", "3.000", "300"],
+    selected: -1,
+  },
+  {
+    id: 28,
+    question: "Wie viele Kerzen hatte der Adventskranz bei seiner Erfindung?",
+    answers: ["23", "Von Anfang an waren es 4", "1, in seltenen Fällen 2"],
+    selected: -1,
+  },
+  {
+    id: 29,
+    question: "Wieviel Prozent Alkohol muss Glühwein in Deutschland mind. enthalten, um ihn Glühwein nennen zu dürfen?",
+    answers: ["12%", "7%", "Es gibt hierfür keine Vorschrift"],
     selected: -1,
   },
 ];
