@@ -1,6 +1,7 @@
-import { $, component$, useClientEffect$, useContext, useMount$, useSignal, useStore } from "@builder.io/qwik";
+import { $, component$, render, useClientEffect$, useContext, useMount$, useSignal, useStore } from "@builder.io/qwik";
 import { QuizContext } from "~/routes";
 import confetti from "canvas-confetti";
+import { CodeSnippets, randomInRange } from "~/code/code";
 
 export default component$(() => {
   const ctx = useContext(QuizContext);
@@ -66,28 +67,23 @@ export default component$(() => {
     modal.value?.click();
   });
 
+  const codeSnippet = $(() => CodeSnippets[randomInRange(0, CodeSnippets.length - 1)]);
+
   return (
     <>
       {store.win ? (
         <>
           <input ref={modal} type="checkbox" id="my-modal" class="modal-toggle" />
-          <div className="modal modal-bottom sm:modal-middle">
+          <div class="modal modal-bottom sm:modal-middle">
             <div class="modal-box">
               <h3 class="font-bold text-lg">Herzlichen Glückwunsch, zufälliger Internetnutzer!</h3>
               <p class="py-4">Sie wurden ausgewählt, um diesen speziellen Code-Snippet zu erhalten:</p>
-              <div className="mockup-code bg-secondary">
-                <pre data-prefix="1">
-                  <code>if (y != 0)</code>
-                </pre>
-                <pre data-prefix="2">
-                  <code> x = y;</code>
-                </pre>
-                <pre data-prefix="3">
-                  <code>else</code>
-                </pre>
-                <pre data-prefix="4">
-                  <code> x = 0;</code>
-                </pre>
+              <div class="mockup-code bg-secondary">
+                {CodeSnippets[randomInRange(0, CodeSnippets.length - 1)].map((text, index) => (
+                  <pre data-prefix={index + 1}>
+                    <code>{text}</code>
+                  </pre>
+                ))}
               </div>
               <div class="modal-action">
                 <label for="my-modal" class="btn btn-primary">

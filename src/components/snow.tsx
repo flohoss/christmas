@@ -1,5 +1,6 @@
 import { component$, useClientEffect$, useStore } from "@builder.io/qwik";
 import confetti from "canvas-confetti";
+import { randomInRange } from "~/code/code";
 
 export default component$(() => {
   const store = useStore({ showSnow: true });
@@ -7,10 +8,6 @@ export default component$(() => {
   useClientEffect$(({ track }) => {
     track(() => store.showSnow);
     let skew = 1;
-
-    function randomInRange(min: number, max: number) {
-      return Math.random() * (max - min) + min;
-    }
 
     (function frame() {
       skew = Math.max(0.8, skew - 0.001);
