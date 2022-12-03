@@ -1,4 +1,4 @@
-import { $, component$, render, useClientEffect$, useContext, useMount$, useSignal, useStore } from "@builder.io/qwik";
+import { $, component$, useClientEffect$, useContext, useMount$, useSignal, useStore } from "@builder.io/qwik";
 import { QuizContext } from "~/routes";
 import confetti from "canvas-confetti";
 import { CodeSnippets, randomInRange } from "~/code/code";
