@@ -5,7 +5,7 @@ import { CodeSnippets, randomInRange } from "~/code/code";
 
 export default component$(() => {
   const ctx = useContext(QuizContext);
-  const store = useStore({ win: false });
+  const store = useStore({ win: false, codeSnippet: [""] });
   const modal = useSignal<HTMLInputElement>();
   const giftBtn = useSignal<HTMLButtonElement>();
 
@@ -64,10 +64,9 @@ export default component$(() => {
   });
 
   const present = $(() => {
+    store.codeSnippet = CodeSnippets[Math.floor(randomInRange(0, CodeSnippets.length - 1))];
     modal.value?.click();
   });
-
-  const codeSnippet = $(() => CodeSnippets[randomInRange(0, CodeSnippets.length - 1)]);
 
   return (
     <>
@@ -79,7 +78,7 @@ export default component$(() => {
               <h3 class="font-bold text-lg">Herzlichen Glückwunsch, zufälliger Internetnutzer!</h3>
               <p class="py-4">Sie wurden ausgewählt, um diesen speziellen Code-Snippet zu erhalten:</p>
               <div class="mockup-code bg-secondary">
-                {CodeSnippets[randomInRange(0, CodeSnippets.length - 1)].map((text, index) => (
+                {store.codeSnippet.map((text, index) => (
                   <pre data-prefix={index + 1}>
                     <code>{text}</code>
                   </pre>
