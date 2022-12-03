@@ -75,7 +75,11 @@ export default component$(() => {
     <>
       {store.win ? (
         <div class="btn btn-primary w-full sm:w-auto gap-4" onclick$={() => teamsBtn.value?.click()}>
-          <div ref={teamsBtn} class="teams-share-button" data-msg-text="Ich bin ein Weihnachtsprofi!"></div>
+          <div
+            ref={teamsBtn}
+            class="teams-share-button"
+            data-msg-text="Lieber, guter Weihnachtsmann, schenk mir einen Schokoladenmann. Nicht so groß und nicht so klein, aber niedlich soll er sein."
+          ></div>
           Auf Teams teilen
         </div>
       ) : (
