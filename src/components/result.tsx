@@ -59,7 +59,7 @@ export default component$(() => {
   });
 
   useClientEffect$(() => {
-    if (!store.win) addFireworks();
+    if (store.win) addFireworks();
   });
 
   const present = $(() => {
@@ -68,7 +68,7 @@ export default component$(() => {
 
   return (
     <>
-      {!store.win ? (
+      {store.win ? (
         <>
           <input ref={modal} type="checkbox" id="my-modal" class="modal-toggle" />
           <div className="modal modal-bottom sm:modal-middle">

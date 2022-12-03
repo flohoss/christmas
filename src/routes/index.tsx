@@ -14,7 +14,7 @@ export interface QuizContextI {
 export const QuizContext = createContext<QuizContextI>("quiz-context");
 
 export default component$(() => {
-  const store = useStore<QuizContextI>({ currentStep: 7, quiz: [], currentQuestion: { ...emptyQuestion }, submitted: false, correct: [] }, { recursive: true });
+  const store = useStore<QuizContextI>({ currentStep: 0, quiz: [], currentQuestion: { ...emptyQuestion }, submitted: false, correct: [] }, { recursive: true });
   useContextProvider(QuizContext, store);
   useClientEffect$(() => (store.quiz = shuffleArray(Catalog, AmountOfQuestions)));
   useClientEffect$(({ track }) => {
