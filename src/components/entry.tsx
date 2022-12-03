@@ -14,7 +14,7 @@ export default component$(() => {
   return (
     <div class="my-10 flex flex-col gap-4 mx-4">
       <div class="text-xl select-none">{ctx.currentQuestion.question}</div>
-      {ctx.currentQuestion.answers.map((answer, index) => (
+      {ctx.currentQuestion?.answers.map((answer, index) => (
         <div class="flex items-center">
           <input
             type="radio"

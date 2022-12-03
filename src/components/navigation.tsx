@@ -17,15 +17,15 @@ export default component$((props: { final: PropFunction<() => void> }) => {
     store.showNext = ctx.currentStep < ctx.quiz.length && ctx.currentStep !== ctx.quiz.length - 1;
   });
   useWatch$(({ track }) => {
-    track(() => ctx.currentQuestion.selected);
-    store.error = ctx.currentQuestion.selected < 0 || ctx.currentQuestion.selected > 2;
+    track(() => ctx.currentQuestion?.selected);
+    store.error = ctx.currentQuestion?.selected < 0 || ctx.currentQuestion?.selected > 2;
   });
-
-  const reset = $(() => {
-    ctx.currentStep = 0;
-    ctx.quiz = shuffleArray(Catalog, AmountOfQuestions);
+  const reset = $(async () => {
     ctx.correct = [];
+    ctx.currentStep = 0;
     ctx.submitted = false;
+    ctx.quiz = shuffleArray(Catalog, AmountOfQuestions);
+    ctx.currentQuestion = ctx.quiz[0];
   });
 
   return (

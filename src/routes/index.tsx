@@ -1,8 +1,9 @@
-import { $, component$, createContext, useContextProvider, useStore, useWatch$ } from "@builder.io/qwik";
+import { $, component$, createContext, useClientEffect$, useContextProvider, useStore } from "@builder.io/qwik";
 import { AmountOfQuestions, Answers, Catalog, emptyQuestion, QuestionAndAnswer, shuffleArray } from "~/quiz/quiz";
 import Indicator from "~/components/indicator";
 import Entry from "~/components/entry";
 import Navigation from "~/components/navigation";
+import Loading from "~/components/loading/loading";
 export interface QuizContextI {
   currentStep: number;
   quiz: QuestionAndAnswer[];
@@ -13,12 +14,10 @@ export interface QuizContextI {
 export const QuizContext = createContext<QuizContextI>("quiz-context");
 
 export default component$(() => {
-  const store = useStore<QuizContextI>(
-    { currentStep: 0, quiz: shuffleArray(Catalog, AmountOfQuestions), currentQuestion: { ...emptyQuestion }, submitted: false, correct: [] },
-    { recursive: true }
-  );
+  const store = useStore<QuizContextI>({ currentStep: 0, quiz: [], currentQuestion: { ...emptyQuestion }, submitted: false, correct: [] }, { recursive: true });
   useContextProvider(QuizContext, store);
-  useWatch$(({ track }) => {
+  useClientEffect$(() => (store.quiz = shuffleArray(Catalog, AmountOfQuestions)));
+  useClientEffect$(({ track }) => {
     track(() => store.currentStep);
     store.currentQuestion = store.quiz[store.currentStep];
   });
@@ -31,10 +30,16 @@ export default component$(() => {
   });
 
   return (
-    <>
-      <Indicator />
-      <Entry key={store.currentQuestion.id} />
-      <Navigation final={final} />
-    </>
+    <div>
+      {store.quiz.length > 0 ? (
+        <>
+          <Indicator />
+          <Entry key={store.currentQuestion.question} />
+          <Navigation final={final} />
+        </>
+      ) : (
+        <Loading />
+      )}
+    </div>
   );
 });
